@@ -1,16 +1,16 @@
-var guruzleApp = angular.module('guruzleApp',['ngRoute'])
+var guruzleApp = angular.module('guruzleApp',[])
 
-guruzleApp.config(function($routeProvider){
-	$routeProvider
-	.when('/',{
+guruzleApp.config(['$routeProvider',function($routeProvider){
+	$routeProvider.
+	when('/',{
 		templateUrl : 'pages/home.html',
 		controller : 'mainController'
-	})
-	.when('/about',{
+	}).
+	when('/about',{
 		templateUrl : 'pages/about.html',
 		controller :  'aboutController'
 	});
-});
+}]);
 //Controllers
 guruzleApp.controller('mainController', function($scope){
 	$scope.brand="Guruzle";
@@ -18,4 +18,4 @@ guruzleApp.controller('mainController', function($scope){
 });
 guruzleApp.controller('aboutController',function($scope){
 	$scope.message="About guruzle";
-})
+});
