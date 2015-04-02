@@ -1,6 +1,6 @@
 var guruzleControllers = angular.module('guruzleControllers', []);
 
-guruzleControllers.controller('mainCtrl', ['$scope', '$http',
+guruzleControllers.controller('homeCtrl', ['$scope', '$http',
   function ($scope, $http) {
     // $http.get('phones/phones.json').success(function(data) {
       // $scope.phones = data;
