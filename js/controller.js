@@ -37,5 +37,5 @@ guruzleControllers.controller('loginCtrl', ['$scope', '$http',
     // });
 	$scope.brand = 'Guruzle - Login';
 	$scope.message = 'Welcome to Guruzle - Login';
-    // $scope.orderProp = 'age';
+  $scope.email = 'user@domain.com';
   }]);
