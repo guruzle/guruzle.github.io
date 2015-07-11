@@ -10,7 +10,7 @@ guruzleControllers.controller('homeCtrl', ['$scope', '$http',
   function showPosition(position) {
     var loc = position.coords.latitude +   "," + position.coords.longitude; 
     
-    $http.get('http://localhost:9000/twitter/' + loc).
+    $http.get('https://floating-tor-4011.herokuapp.com/twitter/' + loc).
       success(function(data, status, headers, config) {
         $scope.tweets = data;
       }).
