@@ -13,16 +13,34 @@
 </head>
 <body ng-controller="homeCtrl">
  <div class="jumbotron text-center">
-        <h1>{{brand}}</h1>
-
-        <p>{{message}}</p>
+        <h1 ng-bind="brand"></h1>
+        <span class ="label label-info" ng-bind="address"></span>
+        <br><br>
+        <!-- <h3 ng-bind="address"></h2> -->
+        <div class="row">
+         <div class='col-lg-3'></div>
+         <div class='col-lg-6'>
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model = "filterText" placeholder="Filter tweets...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="onClickFilter()">Search</button>
+              </span>
+            </div>
+            </div>
+            <div class='col-lg-3'></div>
+        </div>
+</div>
+</div>
         <div ng-repeat="status in tweets.statuses">
-
-        <img src={{status.user.profile_image_url}}><br>
-        from {{status.place.name}} at {{status.created_at}} <br>
-        {{status.text}} <a href={{status.user.url}}>{{status.user.url}}</a>
-</div>
-</div>
+        <div class = "row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <img src={{status.image_url}}> from <a href={{status.map_url}}>{{status.location}}</a> at {{status.time}} <br>
+        <blockquote><p>"{{status.text}}"</p><p><small>{{status.name}}</small></p></blockquote>
+        <a href={{status.user_url}}>{{status.user_url}}</a>
+        </div>
+        <div class="col-md-3"></div>
+        </div>
 <script src="js/app.js"></script>
 <script src="js/controller.js"></script>
 </body>
