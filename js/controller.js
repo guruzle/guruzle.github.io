@@ -42,6 +42,7 @@ guruzleControllers.controller('homeCtrl', ['$scope', '$http',
         message = "The position could not be determined due to " + 
                   "an unknown error (Code: " + strErrorCode + ").";
     }
+    alert(message);
   }
   function getFilteredTweets(loc){
    //loc = '40.765210,-73.982502'; default manhattan
