@@ -18,7 +18,30 @@ guruzleControllers.controller('homeCtrl', ['$scope', '$http',
     getSearchAddressFromGeo(loc);
   }
   function failPosition(error){
-    alert(error);
+    var message = "";   
+    // Check for known errors
+    switch (error.code) {
+        case error.PERMISSION_DENIED:
+            message = "This website does not have permission to use " + 
+                      "the Geolocation API";
+            break;
+        case error.POSITION_UNAVAILABLE:
+            message = "The current position could not be determined.";
+            break;
+        case error.PERMISSION_DENIED_TIMEOUT:
+            message = "The current position could not be determined " + 
+                      "within the specified timeout period.";            
+            break;
+    }
+    // If it's an unknown error, build a message that includes 
+    // information that helps identify the situation, so that 
+    // the error handler can be updated.
+    if (message == "")
+    {
+        var strErrorCode = error.code.toString();
+        message = "The position could not be determined due to " + 
+                  "an unknown error (Code: " + strErrorCode + ").";
+    }
   }
   function getFilteredTweets(loc){
    //loc = '40.765210,-73.982502'; default manhattan
