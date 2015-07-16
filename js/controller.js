@@ -7,7 +7,7 @@ guruzleControllers.controller('homeCtrl', ['$scope', '$http',
    loadTwitter();
   function loadTwitter(){
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(usePosition);
+        navigator.geolocation.getCurrentPosition(usePosition,failPosition,{timeout:5000});
     } else { 
         alert("Geolocation is not supported by this browser.");
     }    
@@ -16,18 +16,19 @@ guruzleControllers.controller('homeCtrl', ['$scope', '$http',
     var loc = position.coords.latitude +   "," + position.coords.longitude; 
     getFilteredTweets(loc);
     getSearchAddressFromGeo(loc);
-    
+  }
+  function failPosition(error){
+    alert(error);
   }
   function getFilteredTweets(loc){
+   //loc = '40.765210,-73.982502'; default manhattan
    var url = 'https://vert-saucisson-8798.herokuapp.com/twitter/' + loc;
-   //loc = '40.649393,-74.390102';
    //var url = 'http://localhost:9000/twitter/' + loc;
     if ($scope.filterText.length > 1){
       url = url + '/' + $scope.filterText;
     }
     $http.get(url). 
       success(function(data, status, headers, config) { 
-        
         $scope.tweets = processResult(data);
       }).
       error(function(data, status, headers, config) { 
